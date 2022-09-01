@@ -1,0 +1,5 @@
+Token = '5134733749:AAEYZ8IklL84bOFVY6PXxUUEE7fzL8TVjPA'
+host = '127.0.0.1'
+user = 'postgres'
+password = '03111984'
+db_name = 'testdb'
