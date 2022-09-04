@@ -68,23 +68,23 @@ async def stoptopupcall(callback_query: types.CallbackQuery):
 
         with connection.cursor() as cursor:
             if callback_query.data in datastring:
-                cursor.execute("""SELECT DISTINCT(model) FROM auto WHERE brand = '"""+callback_query.data+"""';""") # получаем данные о нашем юзере по его идентификатору он хранится в callbackk_query.data
+                cursor.execute("""SELECT DISTINCT(model) FROM auto WHERE brand = '"""+callback_query.data+"""';""")
                 model_data = cursor.fetchall()
                 for i in model_data:
                     model_string.append(str(i[0]))
-                await bot.send_message(callback_query.from_user.id, 'Выберите модель:', reply_markup=buttons.genmarkup_model(model_data)) # делаем вывод инфы
+                await bot.send_message(callback_query.from_user.id, 'Выберите модель:', reply_markup=buttons.genmarkup_model(model_data))
 
         with connection.cursor() as cursor:
             if callback_query.data in model_string:
-                cursor.execute("""SELECT DISTINCT(years) FROM auto WHERE model = '"""+callback_query.data+"""';""") # получаем данные о нашем юзере по его идентификатору он хранится в callbackk_query.data
+                cursor.execute("""SELECT DISTINCT(years) FROM auto WHERE model = '"""+callback_query.data+"""';""")
                 years_data = cursor.fetchall()
                 for i in years_data:
                     years_string.append(str(i[0]))
-                await bot.send_message(callback_query.from_user.id, 'Выберите кузов и год выпуска:', reply_markup=buttons.genmarkup_years(years_data)) # делаем вывод инфы
+                await bot.send_message(callback_query.from_user.id, 'Выберите кузов и год выпуска:', reply_markup=buttons.genmarkup_years(years_data))
 
         with connection.cursor() as cursor:
             if callback_query.data in years_string:
-                cursor.execute("""SELECT DISTINCT(modify) FROM auto WHERE years = '"""+callback_query.data+"""';""") # получаем данные о нашем юзере по его идентификатору он хранится в callbackk_query.data
+                cursor.execute("""SELECT DISTINCT(modify) FROM auto WHERE years = '"""+callback_query.data+"""';""")
                 modify_data = cursor.fetchall()
                 global callback_years
                 callback_years = callback_query.data
@@ -95,7 +95,7 @@ async def stoptopupcall(callback_query: types.CallbackQuery):
 
         with connection.cursor() as cursor:
             if callback_query.data in modify_string:
-                cursor.execute("""SELECT wheels FROM auto WHERE modify = '"""+callback_query.data+"""' AND  years = '"""+callback_years+"""';""") # получаем данные о нашем юзере по его идентификатору он хранится в callbackk_query.data
+                cursor.execute("""SELECT wheels FROM auto WHERE modify = '"""+callback_query.data+"""' AND  years = '"""+callback_years+"""';""")
                 wheels_data = cursor.fetchall()
                 print(callback_query.data)
                 print(wheels_data)
